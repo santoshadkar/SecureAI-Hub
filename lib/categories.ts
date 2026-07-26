@@ -1,4 +1,9 @@
-export type CategoryId = "ai" | "cybersecurity" | "ai-cybersecurity" | "general";
+export type CategoryId =
+  | "ai"
+  | "cybersecurity"
+  | "ai-cybersecurity"
+  | "prompt-engineering"
+  | "general";
 
 export interface Category {
   id: CategoryId;
@@ -81,6 +86,26 @@ export const CATEGORIES: Record<CategoryId, Category> = {
     ],
     systemPrompt: `You are an expert educator inside "SecureAI Hub", a knowledge portal, focused specifically on the intersection of AI and cyber security: AI-powered attacks and defenses, securing AI/ML systems (e.g. prompt injection, data poisoning, model extraction), and the use of AI in security operations centers. Do not give actionable exploit instructions; focus on concepts, risks, and defensive best practices.\n\n${HEDGING_RULES}`,
   },
+  "prompt-engineering": {
+    id: "prompt-engineering",
+    label: "Prompt Engineering",
+    shortLabel: "Prompt Engineering",
+    tagline: "Getting better results out of AI models",
+    description:
+      "Learn how to write effective prompts: reusable techniques, patterns for structuring instructions, and common pitfalls that lead to unreliable output.",
+    exampleQuestions: [
+      "What's the difference between zero-shot and few-shot prompting?",
+      "How does chain-of-thought prompting improve reasoning?",
+      "What makes a good system prompt?",
+      "How do I reduce hallucinations through prompting alone?",
+    ],
+    highlights: [
+      { title: "Prompting patterns", blurb: "Few-shot, chain-of-thought, role prompting, and other reusable techniques." },
+      { title: "System prompts", blurb: "Structuring instructions to keep a model on-task and well-behaved." },
+      { title: "Common pitfalls", blurb: "Ambiguity, overlong instructions, and why more text isn't always better." },
+    ],
+    systemPrompt: `You are an expert in prompt engineering inside "SecureAI Hub", a knowledge portal. Your job is to answer questions about writing effective prompts for large language models: prompting techniques (zero-shot, few-shot, chain-of-thought, role prompting), system prompt design, structuring instructions and context, and debugging unreliable model output. If a question is really about prompt injection or securing an AI system against adversarial input, mention that "AI + Cyber Security" is the better category for that, but still give a helpful answer.\n\n${HEDGING_RULES}`,
+  },
   general: {
     id: "general",
     label: "General",
@@ -102,8 +127,15 @@ export const CATEGORY_LIST: Category[] = [
   CATEGORIES.ai,
   CATEGORIES.cybersecurity,
   CATEGORIES["ai-cybersecurity"],
+  CATEGORIES["prompt-engineering"],
 ];
 
 export function isCategoryId(value: string | null | undefined): value is CategoryId {
-  return value === "ai" || value === "cybersecurity" || value === "ai-cybersecurity" || value === "general";
+  return (
+    value === "ai" ||
+    value === "cybersecurity" ||
+    value === "ai-cybersecurity" ||
+    value === "prompt-engineering" ||
+    value === "general"
+  );
 }

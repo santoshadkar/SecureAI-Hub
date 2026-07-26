@@ -10,9 +10,9 @@ export default function Home() {
         </p>
         <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">SecureAI Hub</h1>
         <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-          Explore Artificial Intelligence, Cyber Security, and where the two meet. Ask
-          questions in plain English and get answers from an AI chatbot, grounded in the
-          topic you care about.
+          Explore Artificial Intelligence, Cyber Security, Prompt Engineering, and where AI
+          and security meet. Ask questions in plain English and get answers from an AI
+          chatbot, grounded in the topic you care about.
         </p>
         <Link
           href="/chat"
@@ -23,7 +23,7 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="mt-14 grid gap-5 sm:grid-cols-3">
+      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {CATEGORY_LIST.map((category) => (
           <Link
             key={category.id}

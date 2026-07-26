@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { href: "/ai", label: "AI" },
   { href: "/cybersecurity", label: "Cyber Security" },
   { href: "/ai-cybersecurity", label: "AI + CyberSec" },
+  { href: "/prompt-engineering", label: "Prompting" },
 ];
 
 export default function Nav() {
