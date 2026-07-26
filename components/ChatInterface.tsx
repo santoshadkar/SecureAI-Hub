@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { CATEGORIES, CATEGORY_LIST, CategoryId } from "@/lib/categories";
 
 interface Message {
@@ -142,13 +144,23 @@ export default function ChatInterface({
           {messages.map((m, i) => (
             <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
               <div
-                className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                   m.role === "user"
-                    ? "bg-emerald-600 text-white"
-                    : "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
+                    ? "whitespace-pre-wrap bg-emerald-600 text-white"
+                    : "prose prose-sm dark:prose-invert max-w-none prose-p:my-2 prose-pre:my-2 bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
                 }`}
               >
-                {m.content || (loading && i === messages.length - 1 ? <TypingDots /> : "")}
+                {m.content ? (
+                  m.role === "model" ? (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.content}</ReactMarkdown>
+                  ) : (
+                    m.content
+                  )
+                ) : loading && i === messages.length - 1 ? (
+                  <TypingDots />
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           ))}
